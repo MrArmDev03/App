@@ -13,6 +13,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
+
 *{
     font-family:'Plus Jakarta Sans',sans-serif;
 }
@@ -76,6 +77,7 @@ body{
 .btn:hover{
     transform:translateY(-2px);
 }
+
 </style>
 </head>
 
@@ -86,11 +88,13 @@ body{
     <div class="absolute w-[500px] h-[500px] bg-white/5 blur-[140px] rounded-full bottom-0 right-0"></div>
 </div>
 
-<!-- LOGIN -->
+<!-- Login Page -->
 <section id="loginPage" class="min-h-screen flex items-center justify-center p-6 relative z-10">
+
     <div class="glass max-w-md w-full rounded-[34px] p-8 fade">
 
         <div class="flex items-center gap-4 mb-8">
+
             <div class="w-16 h-16 rounded-3xl bg-white text-black flex items-center justify-center">
                 <i data-lucide="shield-half"></i>
             </div>
@@ -99,53 +103,90 @@ body{
                 <h1 class="text-3xl font-bold">Jood Piece System</h1>
                 <p class="text-white/50">Discord OAuth2 Authentication</p>
             </div>
+
         </div>
 
         <button
-            onclick="discordLogin()"
-            class="btn bg-white text-black w-full py-4 rounded-2xl font-semibold flex items-center justify-center gap-3"
+        onclick="discordLogin()"
+        class="btn bg-white text-black w-full py-4 rounded-2xl font-semibold flex items-center justify-center gap-3"
         >
             <i data-lucide="disc"></i>
             Continue With Discord
         </button>
 
     </div>
+
 </section>
 
-<!-- APP -->
+<!-- Main App -->
 <section id="app" class="hidden relative z-10">
 
     <nav class="sticky top-0 z-50 p-4">
+
         <div class="glass rounded-[30px] p-3 flex items-center justify-between">
 
             <div class="flex items-center gap-3">
+
                 <img
-                    id="avatar"
-                    class="w-12 h-12 rounded-2xl object-cover"
-                    alt="avatar"
+                id="avatar"
+                class="w-12 h-12 rounded-2xl object-cover"
+                alt="avatar"
                 >
 
                 <div>
                     <h2 id="username" class="font-bold"></h2>
                     <p class="text-white/50 text-xs">Authenticated User</p>
                 </div>
+
             </div>
 
             <div class="flex items-center gap-2 flex-wrap">
-                <button class="tab active px-4 py-2 rounded-xl text-sm">
+
+                <button
+                class="tab active px-4 py-2 rounded-xl text-sm"
+                onclick="openPage('home',this)"
+                >
                     Home
                 </button>
 
-                <button onclick="logout()" class="tab px-4 py-2 rounded-xl text-sm text-red-300">
+                <button
+                class="tab px-4 py-2 rounded-xl text-sm"
+                onclick="openPage('moderator',this)"
+                >
+                    Moderator
+                </button>
+
+                <button
+                class="tab px-4 py-2 rounded-xl text-sm"
+                onclick="openPage('tester',this)"
+                >
+                    Tester
+                </button>
+
+                <button
+                id="managerTabBtn"
+                class="tab hidden px-4 py-2 rounded-xl text-sm"
+                onclick="openPage('manager',this)"
+                >
+                    Manager Mode
+                </button>
+
+                <button
+                onclick="logout()"
+                class="tab px-4 py-2 rounded-xl text-sm text-red-300"
+                >
                     Logout
                 </button>
+
             </div>
 
         </div>
+
     </nav>
 
     <main class="p-4">
 
+        <!-- HOME -->
         <section id="homePage">
 
             <div class="glass rounded-[38px] p-8 fade">
@@ -157,8 +198,151 @@ body{
                 </h1>
 
                 <p class="text-white/50 max-w-2xl">
-                    Official Discord OAuth2 Login System
+                    Anime Destiny Official Application System Moderator & Tester
                 </p>
+
+            </div>
+
+        </section>
+
+        <!-- MODERATOR -->
+        <section id="moderatorPage" class="hidden fade">
+
+            <div class="max-w-3xl mx-auto glass rounded-[38px] p-8">
+
+                <h2 class="text-4xl font-bold mb-2">
+                    Moderator Application
+                </h2>
+
+                <p class="text-white/50 mb-8">
+                    Professional Moderation Recruitment
+                </p>
+
+                <form id="modForm" class="space-y-5">
+
+                    <input class="input" placeholder="Discord Username" required>
+
+                    <input class="input" placeholder="Discord ID" required>
+
+                    <input class="input" placeholder="Age" required>
+
+                    <input class="input" placeholder="Timezone" required>
+
+                    <input class="input" placeholder="Languages" required>
+
+                    <textarea
+                    class="input h-28 resize-none"
+                    placeholder="Past Experience"
+                    required
+                    ></textarea>
+
+                    <textarea
+                    class="input h-32 resize-none"
+                    placeholder="Why should we choose you?"
+                    required
+                    ></textarea>
+
+                    <input class="input" placeholder="Roblox Username" required>
+
+                    <input class="input" placeholder="How long have you been working?" required>
+
+                    <button
+                    type="submit"
+                    class="btn bg-white text-black w-full py-4 rounded-2xl font-semibold"
+                    >
+                        Submit Application
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- TESTER -->
+        <section id="testerPage" class="hidden fade">
+
+            <div class="max-w-3xl mx-auto glass rounded-[38px] p-8">
+
+                <h2 class="text-4xl font-bold mb-2">
+                    Tester Application
+                </h2>
+
+                <p class="text-white/50 mb-8">
+                    Gameplay Testing Recruitment
+                </p>
+
+                <form id="testerForm" class="space-y-5">
+
+                    <input class="input" placeholder="Discord Username" required>
+
+                    <input class="input" placeholder="Discord ID" required>
+
+                    <input class="input" placeholder="Age" required>
+
+                    <input class="input" placeholder="Timezone" required>
+
+                    <input class="input" placeholder="Roblox Username" required>
+
+                    <textarea
+                    class="input h-28 resize-none"
+                    placeholder="Past Experience"
+                    required
+                    ></textarea>
+
+                    <input class="input" placeholder="How long have you been working?" required>
+
+                    <button
+                    type="submit"
+                    class="btn bg-white text-black w-full py-4 rounded-2xl font-semibold"
+                    >
+                        Submit Application
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- MANAGER -->
+        <section id="managerPage" class="hidden fade">
+
+            <div class="max-w-6xl mx-auto space-y-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                    <div class="glass rounded-3xl p-6">
+                        <h3 class="text-white/50 text-sm mb-2">
+                            Total Applicants
+                        </h3>
+
+                        <p class="text-4xl font-bold" id="totalApplicants">
+                            0
+                        </p>
+                    </div>
+
+                    <div class="glass rounded-3xl p-6">
+                        <h3 class="text-white/50 text-sm mb-2">
+                            Total Visitors
+                        </h3>
+
+                        <p class="text-4xl font-bold" id="totalVisitors">
+                            0
+                        </p>
+                    </div>
+
+                    <div class="glass rounded-3xl p-6">
+                        <h3 class="text-white/50 text-sm mb-2">
+                            System Status
+                        </h3>
+
+                        <p class="text-4xl font-bold">
+                            ONLINE
+                        </p>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -169,91 +353,132 @@ body{
 </section>
 
 <script>
+
 lucide.createIcons();
 
 const CLIENT_ID = "1500135273571549224";
 
-const REDIRECT_URI = "https://joodpiece.netlify.app/";
+const REDIRECT_URI =
+"https://joodpiece.netlify.app/";
+
+// 🔥 MANAGER IDS
+const MANAGER_IDS = [
+    "1492586993560064031", "1325309181988962385", "777373822918852629"
+];
 
 let currentUser = null;
 
-// ===================== LOGIN =====================
+let state =
+JSON.parse(
+    localStorage.getItem("staff_system_state")
+) || {
+
+    applicants:[]
+
+};
+
+let visitors =
+JSON.parse(
+    localStorage.getItem("staff_visitors")
+) || [];
+
+// ================= LOGIN =================
 
 function discordLogin(){
 
+    const params = new URLSearchParams({
+
+        client_id:CLIENT_ID,
+
+        redirect_uri:REDIRECT_URI,
+
+        response_type:"token",
+
+        scope:"identify"
+
+    });
+
     window.location.href =
-    "https://discord.com/oauth2/authorize?client_id=1500135273571549224&response_type=code&redirect_uri=https%3A%2F%2Fjoodpiece.netlify.app%2F&scope=identify";
+    `https://discord.com/oauth2/authorize?${params.toString()}`;
 
 }
 
-// ===================== INIT =====================
+// ================= INIT LOGIN =================
 
 async function initLogin(){
 
-    if(location.hash.includes("access_token")){
+    // LOGIN SUCCESS
 
-        const params = new URLSearchParams(location.hash.substring(1));
+    if(window.location.hash){
 
-        const token = params.get("access_token");
+        const hash =
+        new URLSearchParams(
+            window.location.hash.substring(1)
+        );
+
+        const token =
+        hash.get("access_token");
 
         if(token){
 
-            localStorage.setItem("discord_token",token);
+            localStorage.setItem(
+                "discord_token",
+                token
+            );
 
-            window.location.replace(REDIRECT_URI);
+            window.location.href =
+            REDIRECT_URI;
+
+            return;
 
         }
 
-        return;
     }
 
-    const saved = localStorage.getItem("discord_token");
+    const token =
+    localStorage.getItem("discord_token");
 
-    if(!saved) return;
+    if(!token) return;
 
     try{
 
-        const user = await getDiscordUser(saved);
+        const user =
+        await getDiscordUser(token);
 
         currentUser = user;
 
-        document.getElementById("loginPage").classList.add("hidden");
+        showApp(user);
 
-        document.getElementById("app").classList.remove("hidden");
+        trackVisitor(user);
 
-        document.getElementById("username").innerText =
-        user.username;
-
-        const avatarEl =
-        document.getElementById("avatar");
-
-        if(user.avatar){
-
-            avatarEl.src =
-            `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-
-        }else{
-
-            avatarEl.src =
-            "https://cdn.discordapp.com/embed/avatars/0.png";
-
+        if(
+            MANAGER_IDS.includes(user.id)
+        ){
+            document
+            .getElementById("managerTabBtn")
+            .classList.remove("hidden");
         }
+
+        updateManagerUI();
 
     }catch(err){
 
         console.error(err);
 
-        localStorage.removeItem("discord_token");
+        localStorage.removeItem(
+            "discord_token"
+        );
 
     }
 
 }
 
-// ===================== DISCORD USER =====================
+// ================= GET USER =================
 
 async function getDiscordUser(token){
 
-    const res = await fetch(
+    const res =
+    await fetch(
         "https://discord.com/api/users/@me",
         {
             headers:{
@@ -264,7 +489,9 @@ async function getDiscordUser(token){
 
     if(!res.ok){
 
-        throw new Error("Failed to fetch user");
+        throw new Error(
+            "Failed to fetch user"
+        );
 
     }
 
@@ -272,21 +499,209 @@ async function getDiscordUser(token){
 
 }
 
-// ===================== LOGOUT =====================
+// ================= SHOW APP =================
+
+function showApp(user){
+
+    document
+    .getElementById("loginPage")
+    .classList.add("hidden");
+
+    document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("username")
+    .innerText =
+    user.username;
+
+    const avatar =
+    user.avatar
+    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
+    : "https://cdn.discordapp.com/embed/avatars/0.png";
+
+    document
+    .getElementById("avatar")
+    .src = avatar;
+
+}
+
+// ================= PAGE =================
+
+function openPage(page,el){
+
+    document
+    .querySelectorAll("main section")
+    .forEach(sec=>{
+
+        sec.classList.add("hidden");
+
+    });
+
+    document
+    .getElementById(page + "Page")
+    .classList.remove("hidden");
+
+    document
+    .querySelectorAll(".tab")
+    .forEach(tab=>{
+
+        tab.classList.remove("active");
+
+    });
+
+    if(el){
+
+        el.classList.add("active");
+
+    }
+
+}
+
+// ================= LOGOUT =================
 
 function logout(){
 
-    localStorage.removeItem("discord_token");
-
-    currentUser = null;
+    localStorage.removeItem(
+        "discord_token"
+    );
 
     location.reload();
 
 }
 
-// ===================== START =====================
+// ================= VISITOR =================
+
+function trackVisitor(user){
+
+    if(
+        !visitors.find(v=>v.id===user.id)
+    ){
+
+        visitors.push({
+
+            id:user.id,
+
+            username:user.username
+
+        });
+
+    }
+
+    localStorage.setItem(
+        "staff_visitors",
+        JSON.stringify(visitors)
+    );
+
+}
+
+// ================= MANAGER =================
+
+function updateManagerUI(){
+
+    if(
+        !MANAGER_IDS.includes(
+            currentUser?.id
+        )
+    ) return;
+
+    document
+    .getElementById("totalApplicants")
+    .innerText =
+    state.applicants.length;
+
+    document
+    .getElementById("totalVisitors")
+    .innerText =
+    visitors.length;
+
+}
+
+// ================= MOD FORM =================
+
+document
+.getElementById("modForm")
+?.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const inputs =
+    e.target.querySelectorAll(
+        "input, textarea"
+    );
+
+    const data = {
+
+        type:"Moderator",
+
+        discord:inputs[0].value,
+
+        discordId:inputs[1].value,
+
+        age:inputs[2].value
+
+    };
+
+    state.applicants.push(data);
+
+    localStorage.setItem(
+        "staff_system_state",
+        JSON.stringify(state)
+    );
+
+    alert(
+        "Moderator application submitted!"
+    );
+
+    e.target.reset();
+
+});
+
+// ================= TESTER FORM =================
+
+document
+.getElementById("testerForm")
+?.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const inputs =
+    e.target.querySelectorAll(
+        "input, textarea"
+    );
+
+    const data = {
+
+        type:"Tester",
+
+        discord:inputs[0].value,
+
+        discordId:inputs[1].value,
+
+        age:inputs[2].value
+
+    };
+
+    state.applicants.push(data);
+
+    localStorage.setItem(
+        "staff_system_state",
+        JSON.stringify(state)
+    );
+
+    alert(
+        "Tester application submitted!"
+    );
+
+    e.target.reset();
+
+});
+
+// ================= START =================
 
 initLogin();
+
 </script>
 
 </body>
