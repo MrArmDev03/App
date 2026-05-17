@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Jood Piece Application</title>
+<title>Anime Destiny Application</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -89,8 +89,6 @@ transform:translateY(-2px);
 <div class="absolute w-[500px] h-[500px] bg-white/5 blur-[140px] rounded-full bottom-0 right-0"></div>
 </div>
 
-<!-- LOGIN PAGE -->
-
 <section id="loginPage" class="min-h-screen flex items-center justify-center p-6 relative z-10">
 
 <div class="glass max-w-md w-full rounded-[34px] p-8 fade">
@@ -103,7 +101,7 @@ transform:translateY(-2px);
 
 <div>
 <h1 class="text-3xl font-bold">
-Jood Piece System
+Anime Destiny System
 </h1>
 
 <p class="text-white/50">
@@ -122,8 +120,6 @@ Continue With Discord
 
 </section>
 
-<!-- APP -->
-
 <section id="app" class="hidden relative z-10">
 
 <nav class="sticky top-0 z-50 p-4">
@@ -135,13 +131,11 @@ Continue With Discord
 <img id="avatar" class="w-12 h-12 rounded-2xl object-cover">
 
 <div>
-
 <h2 id="username" class="font-bold"></h2>
 
 <p class="text-white/50 text-xs">
 Authenticated User
 </p>
-
 </div>
 
 </div>
@@ -176,26 +170,22 @@ Logout
 
 <main class="p-4">
 
-<!-- HOME -->
-
 <section id="homePage">
 
 <div class="glass rounded-[38px] p-8 fade">
 
 <h1 class="text-5xl font-bold leading-tight mb-5">
-Jood Piece<br>
+Anime Destiny<br>
 Application System
 </h1>
 
 <p class="text-white/50 max-w-2xl">
-Official Application System Moderator & Tester
+Anime Destiny Official Application System Moderator & Tester
 </p>
 
 </div>
 
 </section>
-
-<!-- MODERATOR -->
 
 <section id="moderatorPage" class="hidden fade">
 
@@ -208,6 +198,18 @@ Moderator Application
 <p class="text-white/50 mb-8">
 Professional Moderation Recruitment
 </p>
+
+<div id="modClosed" class="hidden glass rounded-3xl p-8 text-center mb-6">
+
+<h3 class="text-2xl font-semibold mb-2">
+Registration hasn't started yet
+</h3>
+
+<p class="text-white/50">
+Moderator applications are currently closed.
+</p>
+
+</div>
 
 <form id="modForm" class="space-y-5">
 
@@ -235,8 +237,6 @@ Submit Application
 
 </section>
 
-<!-- TESTER -->
-
 <section id="testerPage" class="hidden fade">
 
 <div class="max-w-3xl mx-auto glass rounded-[38px] p-8">
@@ -248,6 +248,18 @@ Tester Application
 <p class="text-white/50 mb-8">
 Gameplay testing recruitment.
 </p>
+
+<div id="testerClosed" class="hidden glass rounded-3xl p-8 text-center mb-6">
+
+<h3 class="text-2xl font-semibold mb-2">
+Registration hasn't started yet
+</h3>
+
+<p class="text-white/50">
+Tester applications are currently closed.
+</p>
+
+</div>
 
 <form id="testerForm" class="space-y-5">
 
@@ -270,8 +282,6 @@ Submit Application
 </div>
 
 </section>
-
-<!-- MANAGER -->
 
 <section id="managerPage" class="hidden fade">
 
@@ -296,6 +306,78 @@ Submit Application
 
 </div>
 
+<div class="grid md:grid-cols-2 gap-5">
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex items-center justify-between">
+
+<div>
+<h3 class="text-xl font-semibold">
+Moderator Applications
+</h3>
+
+<p class="text-white/50 text-sm">
+Toggle registrations.
+</p>
+</div>
+
+<button id="modToggle" onclick="toggleApps('moderator')" class="bg-green-500/20 text-green-300 px-5 py-2 rounded-xl">
+OPEN
+</button>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex items-center justify-between">
+
+<div>
+<h3 class="text-xl font-semibold">
+Tester Applications
+</h3>
+
+<p class="text-white/50 text-sm">
+Toggle registrations.
+</p>
+</div>
+
+<button id="testerToggle" onclick="toggleApps('tester')" class="bg-green-500/20 text-green-300 px-5 py-2 rounded-xl">
+OPEN
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-[38px] p-7">
+
+<div class="flex items-center justify-between">
+
+<div>
+
+<h2 class="text-3xl font-bold">
+Management Dashboard
+</h2>
+
+<p class="text-white/50 mt-1">
+Recruitment control center.
+</p>
+
+</div>
+
+<button onclick="toggleLock()" class="btn bg-red-500/20 border border-red-500/20 px-5 py-3 rounded-2xl">
+Lock Site
+</button>
+
+</div>
+
+</div>
+
 <div class="glass rounded-[38px] p-7">
 
 <h3 class="text-3xl font-bold mb-6">
@@ -303,6 +385,106 @@ Applicants
 </h3>
 
 <div id="applicants" class="space-y-4"></div>
+
+</div>
+
+<!-- RESULTS SYSTEM -->
+
+<div class="glass rounded-[38px] p-7">
+
+<h3 class="text-3xl font-bold mb-6">
+Results System
+</h3>
+
+<div class="space-y-5">
+
+<div>
+<label class="block text-sm text-white/60 mb-2">
+Link Webhook
+</label>
+
+<input id="resultWebhook" class="input">
+</div>
+
+<div>
+<label class="block text-sm text-white/60 mb-2">
+Discord Profile Link
+</label>
+
+<input id="resultProfile" class="input">
+</div>
+
+<div>
+<label class="block text-sm text-white/60 mb-2">
+Webhook Name
+</label>
+
+<input id="resultName" class="input">
+</div>
+
+<div>
+<label class="block text-sm text-white/60 mb-2">
+Content
+</label>
+
+<input id="resultContent" class="input">
+</div>
+
+<div>
+<label class="block text-sm text-white/60 mb-2">
+Message
+</label>
+
+<textarea id="resultMessage" class="input h-32 resize-none"></textarea>
+</div>
+
+<div>
+<label class="block text-sm text-white/60 mb-2">
+Embed Color
+</label>
+
+<input id="resultColor" type="color" value="#ffffff" class="w-full h-14 rounded-2xl">
+</div>
+
+<div class="glass rounded-3xl p-6">
+
+<h4 class="text-xl font-semibold mb-4">
+Preview
+</h4>
+
+<div id="resultPreview"></div>
+
+</div>
+
+<button onclick="sendResults()" class="btn bg-white text-black w-full py-4 rounded-2xl font-semibold">
+Send Results
+</button>
+
+</div>
+
+</div>
+
+<!-- MOD LOG -->
+
+<div class="glass rounded-[38px] p-7">
+
+<h3 class="text-3xl font-bold mb-6">
+Moderator AppLog
+</h3>
+
+<div id="modLogs" class="space-y-4"></div>
+
+</div>
+
+<!-- TESTER LOG -->
+
+<div class="glass rounded-[38px] p-7">
+
+<h3 class="text-3xl font-bold mb-6">
+Tester AppLog
+</h3>
+
+<div id="testerLogs" class="space-y-4"></div>
 
 </div>
 
@@ -318,29 +500,15 @@ Applicants
 
 lucide.createIcons();
 
-// =======================
-// CONFIG
-// =======================
-
 const CLIENT_ID =
 "1500135273571549224";
 
 const REDIRECT_URI =
-"https://joodpiece.netlify.app/";
+"https://glowing-granita-a8a2d4.netlify.app/";
 
 const MANAGER_IDS = [
-
-"1492586993560064031",
-
-"777373822918852629",
-
-"1325309181988962385"
-
+"1492586993560064031"
 ];
-
-// =======================
-
-let currentUser = null;
 
 const savedState =
 JSON.parse(
@@ -350,7 +518,18 @@ localStorage.getItem("staff_system_state")
 const state =
 savedState || {
 
-applicants:[]
+locked:false,
+
+open:{
+moderator:true,
+tester:true
+},
+
+applicants:[],
+
+modLogs:[],
+
+testerLogs:[]
 
 };
 
@@ -358,10 +537,6 @@ const visitors =
 JSON.parse(
 localStorage.getItem("staff_visitors")
 ) || [];
-
-// =======================
-// SAVE
-// =======================
 
 function saveState(){
 
@@ -372,10 +547,6 @@ JSON.stringify(state)
 
 }
 
-// =======================
-// LOGIN
-// =======================
-
 function discordLogin(){
 
 const url =
@@ -384,10 +555,6 @@ const url =
 window.location.href = url;
 
 }
-
-// =======================
-// GET USER
-// =======================
 
 async function getDiscordUser(token){
 
@@ -399,63 +566,42 @@ Authorization:`Bearer ${token}`
 }
 });
 
-if(!res.ok){
-
-throw new Error(
-"Failed to fetch user"
-);
-
-}
-
 return await res.json();
 
 }
 
-// =======================
-// INIT LOGIN
-// =======================
-
 async function initLogin(){
 
-if(window.location.hash){
+if(location.hash.includes("access_token")){
 
-const hash =
+const params =
 new URLSearchParams(
-window.location.hash.substring(1)
+location.hash.substring(1)
 );
 
 const token =
-hash.get("access_token");
-
-if(token){
+params.get("access_token");
 
 localStorage.setItem(
 "discord_token",
 token
 );
 
-window.location.href =
-REDIRECT_URI;
-
-return;
+window.location.replace(REDIRECT_URI);
 
 }
 
-}
-
-const token =
+const saved =
 localStorage.getItem(
 "discord_token"
 );
 
-if(!token) return;
+if(!saved) return;
 
 try{
 
 const user =
-await getDiscordUser(token);
-
-currentUser = user;
+await getDiscordUser(saved);
 
 document.getElementById("loginPage").classList.add("hidden");
 
@@ -465,9 +611,7 @@ document.getElementById("username").innerText =
 user.username;
 
 document.getElementById("avatar").src =
-user.avatar
-? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
-: "https://cdn.discordapp.com/embed/avatars/0.png";
+`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
 
 trackVisitor(user);
 
@@ -477,9 +621,7 @@ document.getElementById("managerTab").classList.remove("hidden");
 
 }
 
-}catch(err){
-
-console.error(err);
+}catch(e){
 
 localStorage.removeItem("discord_token");
 
@@ -487,51 +629,68 @@ localStorage.removeItem("discord_token");
 
 }
 
-// =======================
-// PAGE
-// =======================
-
-function openPage(page,el){
-
-document.querySelectorAll("main section").forEach(sec=>{
-
-sec.classList.add("hidden");
-
-});
-
-document.getElementById(page+"Page").classList.remove("hidden");
-
-document.querySelectorAll(".tab").forEach(tab=>{
-
-tab.classList.remove("active");
-
-});
-
-if(el){
-
-el.classList.add("active");
-
-}
-
-}
-
-// =======================
-// LOGOUT
-// =======================
-
 function logout(){
 
-localStorage.removeItem(
-"discord_token"
-);
+localStorage.removeItem("discord_token");
 
 location.reload();
 
 }
 
-// =======================
-// VISITORS
-// =======================
+function openPage(page,el){
+
+document.querySelectorAll("main section").forEach(sec=>{
+sec.classList.add("hidden");
+});
+
+document.getElementById(page+"Page").classList.remove("hidden");
+
+document.querySelectorAll(".tab").forEach(tab=>{
+tab.classList.remove("active");
+});
+
+el.classList.add("active");
+
+}
+
+function toggleApps(type){
+
+state.open[type] = !state.open[type];
+
+updateUI();
+
+}
+
+function toggleLock(){
+
+state.locked = !state.locked;
+
+updateUI();
+
+}
+
+function updateUI(){
+
+document.getElementById("modForm").classList.toggle("hidden",!state.open.moderator);
+
+document.getElementById("modClosed").classList.toggle("hidden",state.open.moderator);
+
+document.getElementById("testerForm").classList.toggle("hidden",!state.open.tester);
+
+document.getElementById("testerClosed").classList.toggle("hidden",state.open.tester);
+
+document.getElementById("modToggle").innerText =
+state.open.moderator ? "OPEN" : "CLOSED";
+
+document.getElementById("testerToggle").innerText =
+state.open.tester ? "OPEN" : "CLOSED";
+
+document.getElementById("systemStatus").innerText =
+state.locked ? "LOCKED" : "ONLINE";
+
+saveState();
+
+}
 
 function trackVisitor(user){
 
@@ -541,11 +700,8 @@ visitors.find(v=>v.id===user.id);
 if(!existing){
 
 visitors.push({
-
 id:user.id,
-
 username:user.username
-
 });
 
 }
@@ -562,10 +718,6 @@ document.getElementById("latestVisitor").innerText =
 user.username;
 
 }
-
-// =======================
-// APPLICANTS
-// =======================
 
 function renderApplicants(){
 
@@ -600,11 +752,27 @@ Discord ID: ${app.discordId}
 Roblox: ${app.roblox}
 </p>
 
+<p class="text-white/40 text-sm">
+Status: ${app.status}
+</p>
+
 </div>
 
-<button onclick="deleteApplicant(${index})" class="btn bg-red-500/20 text-red-300 px-4 py-2 rounded-xl">
+<div class="flex flex-col gap-2">
+
+<button onclick="setStatus(${index},'Accepted')" class="btn bg-green-500/20 text-green-300 px-4 py-2 rounded-xl">
+Accept
+</button>
+
+<button onclick="setStatus(${index},'Rejected')" class="btn bg-red-500/20 text-red-300 px-4 py-2 rounded-xl">
+Reject
+</button>
+
+<button onclick="deleteApplicant(${index})" class="btn bg-white/10 px-4 py-2 rounded-xl">
 Delete
 </button>
+
+</div>
 
 </div>
 
@@ -616,9 +784,107 @@ Delete
 
 }
 
-// =======================
-// DELETE
-// =======================
+function renderLogs(){
+
+document.getElementById("modLogs").innerHTML =
+state.modLogs.map(log=>`
+
+<div class="glass rounded-2xl p-4">
+<h4 class="font-semibold">${log.username}</h4>
+<p class="text-white/40 text-sm">${log.time}</p>
+</div>
+
+`).join("");
+
+document.getElementById("testerLogs").innerHTML =
+state.testerLogs.map(log=>`
+
+<div class="glass rounded-2xl p-4">
+<h4 class="font-semibold">${log.username}</h4>
+<p class="text-white/40 text-sm">${log.time}</p>
+</div>
+
+`).join("");
+
+}
+
+function updatePreview(){
+
+const preview =
+document.getElementById("resultPreview");
+
+const accepted =
+state.applicants.filter(
+a=>a.status==="Accepted"
+);
+
+preview.innerHTML = accepted.map(user=>`
+<div class="glass rounded-xl p-3 mb-2">
+• ${user.discord}
+</div>
+`).join("");
+
+}
+
+async function sendResults(){
+
+const webhook =
+document.getElementById("resultWebhook").value;
+
+const profile =
+document.getElementById("resultProfile").value;
+
+const webhookName =
+document.getElementById("resultName").value;
+
+const content =
+document.getElementById("resultContent").value;
+
+const message =
+document.getElementById("resultMessage").value;
+
+const color =
+document.getElementById("resultColor").value.replace("#","");
+
+const accepted =
+state.applicants
+.filter(a=>a.status==="Accepted")
+.map(a=>`• ${a.discord}`)
+.join("\n");
+
+await fetch(webhook,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+username:webhookName,
+content:content,
+embeds:[{
+title:"Application Results",
+description:`${message}\n\n${accepted}`,
+color:parseInt(color,16),
+url:profile
+}]
+})
+});
+
+alert("Results Sent");
+
+}
+
+function setStatus(index,status){
+
+state.applicants[index].status =
+status;
+
+saveState();
+
+renderApplicants();
+
+updatePreview();
+
+}
 
 function deleteApplicant(index){
 
@@ -628,11 +894,9 @@ saveState();
 
 renderApplicants();
 
-}
+updatePreview();
 
-// =======================
-// MOD FORM
-// =======================
+}
 
 document.getElementById("modForm").addEventListener("submit",(e)=>{
 
@@ -661,25 +925,28 @@ reason:inputs[6].value,
 
 roblox:inputs[7].value,
 
-working:inputs[8].value
+working:inputs[8].value,
+
+status:"Pending"
 
 };
 
 state.applicants.push(data);
 
+state.modLogs.unshift({
+username:data.discord,
+time:new Date().toLocaleString()
+});
+
 saveState();
 
 renderApplicants();
 
-alert("Moderator application submitted!");
+renderLogs();
 
 e.target.reset();
 
 });
-
-// =======================
-// TESTER FORM
-// =======================
 
 document.getElementById("testerForm").addEventListener("submit",(e)=>{
 
@@ -704,25 +971,36 @@ roblox:inputs[4].value,
 
 experience:inputs[5].value,
 
-working:inputs[6].value
+working:inputs[6].value,
+
+status:"Pending"
 
 };
 
 state.applicants.push(data);
 
+state.testerLogs.unshift({
+username:data.discord,
+time:new Date().toLocaleString()
+});
+
 saveState();
 
 renderApplicants();
 
-alert("Tester application submitted!");
+renderLogs();
 
 e.target.reset();
 
 });
 
-// =======================
+updateUI();
 
 renderApplicants();
+
+renderLogs();
+
+updatePreview();
 
 initLogin();
 
